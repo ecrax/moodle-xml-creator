@@ -1,4 +1,4 @@
-export function TextInput({ name, placeholder, value, onChange }) {
+export function TextInput({ name, placeholder, value, onChange, className }) {
   return (
     <input
       type="text"
@@ -6,7 +6,7 @@ export function TextInput({ name, placeholder, value, onChange }) {
       placeholder={placeholder}
       value={value}
       onChange={onChange}
-      className="flex-1 block w-full py-2 my-2 border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+      className="flex-1 block w-full py-2 border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
     />
   );
 }

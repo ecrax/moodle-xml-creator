@@ -47,19 +47,23 @@ function Question({ questions, setQuestions, index }) {
         }}
         placeholder={"Question Text"}
       />
-      <div className="ml-8">
-        Answers:
+      <div className="py-4 ml-8">
+        <div className="pb-2 text-lg">Answers:</div>
         {questions[index].answers.map((a, i) => {
           return (
             <div key={i}>
-              <div className="flex">
+              <div className="flex pb-2">
                 <TextInput
                   onChange={(event) => onChange(event, i)}
                   value={questions[index].answers[i]}
                   placeholder={"Answer"}
                 />
                 {questions[index].answers.length !== 1 && (
-                  <OutlineButton icon="trash" onClick={() => removeAnswer(i)}>
+                  <OutlineButton
+                    className="ml-2"
+                    icon="trash"
+                    onClick={() => removeAnswer(i)}
+                  >
                     Remove
                   </OutlineButton>
                 )}
