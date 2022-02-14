@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { createXMLQuiz } from "./util/xml";
 import Question from "./components/Question";
+import { downloadFile } from "./util/downloadFile";
 
 const App = () => {
   const [xml, setXml] = useState("");
@@ -24,7 +25,7 @@ const App = () => {
 
   return (
     <div>
-      {questions.map((question, i) => {
+      {questions.map((_question, i) => {
         return (
           <div key={i}>
             <Question
@@ -48,6 +49,11 @@ const App = () => {
       >
         Convert to xml
       </button>
+      {xml !== "" && (
+        <button onClick={() => downloadFile(xml, "moodle-quiz")}>
+          Download .xml file
+        </button>
+      )}
       <pre>{xml}</pre>
     </div>
   );
