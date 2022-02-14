@@ -1,4 +1,6 @@
 import RichText from "../components/RichText";
+import { OutlineButton } from "./Button";
+import { TextInput } from "./TextInput";
 
 function Question({ questions, setQuestions, index }) {
   const onChange = (e, i) => {
@@ -22,9 +24,8 @@ function Question({ questions, setQuestions, index }) {
   };
 
   return (
-    <div style={{ border: "2px solid black" }}>
-      <input
-        type="text"
+    <div>
+      <TextInput
         name="question-name"
         placeholder="Question Name"
         value={questions[index].questionName}
@@ -46,23 +47,32 @@ function Question({ questions, setQuestions, index }) {
         }}
         placeholder={"Question Text"}
       />
-      {questions[index].answers.map((a, i) => {
-        return (
-          <div key={i}>
-            <input
-              onChange={(event) => onChange(event, i)}
-              value={questions[index].answers[i]}
-              placeholder={"Answer"}
-            />
-            {questions[index].answers.length !== 1 && (
-              <button onClick={() => removeAnswer(i)}>Remove</button>
-            )}
-            {questions[index].answers.length - 1 === i && (
-              <button onClick={addAnswer}>Add</button>
-            )}
-          </div>
-        );
-      })}
+      <div className="ml-8">
+        Answers:
+        {questions[index].answers.map((a, i) => {
+          return (
+            <div key={i}>
+              <div className="flex">
+                <TextInput
+                  onChange={(event) => onChange(event, i)}
+                  value={questions[index].answers[i]}
+                  placeholder={"Answer"}
+                />
+                {questions[index].answers.length !== 1 && (
+                  <OutlineButton icon="trash" onClick={() => removeAnswer(i)}>
+                    Remove
+                  </OutlineButton>
+                )}
+              </div>
+              {questions[index].answers.length - 1 === i && (
+                <OutlineButton icon="add" onClick={addAnswer}>
+                  Add
+                </OutlineButton>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
