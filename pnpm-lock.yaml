@@ -22,7 +22,6 @@ specifiers:
   react-scripts: 5.0.0
   typescript: '>=3.2.1 <4.0.0 || >=4.0.0 <5.0.0'
   web-vitals: ^2.1.4
-  xml-beautifier: ^0.5.0
 
 dependencies:
   '@babel/core': 7.17.2
@@ -46,7 +45,6 @@ dependencies:
   react-scripts: 5.0.0_85624e7e02a406ac086394b010e1478a
   typescript: 4.5.5
   web-vitals: 2.1.4
-  xml-beautifier: 0.5.0
 
 packages:
 
@@ -8374,11 +8372,6 @@ packages:
       strip-ansi: 6.0.1
     dev: false
 
-  /repeat-string/1.6.1:
-    resolution: {integrity: sha1-jcrkcOHIirwtYA//Sndihtp15jc=}
-    engines: {node: '>=0.10'}
-    dev: false
-
   /require-directory/2.1.1:
     resolution: {integrity: sha1-jGStX9MNqxyXbiNE/+f3kqam30I=}
     engines: {node: '>=0.10.0'}
@@ -9981,12 +9974,6 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
-    dev: false
-
-  /xml-beautifier/0.5.0:
-    resolution: {integrity: sha512-QG/qiHeolHUd1tAtM+5zHxTzDprb8qvhmIYUYV1E9QK/jTFlrAa1Mz7QQqJPeqc3uuFAGzTOhjvbdx2hOP6bHw==}
-    dependencies:
-      repeat-string: 1.6.1
     dev: false
 
   /xml-name-validator/3.0.0:
