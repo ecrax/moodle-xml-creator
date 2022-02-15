@@ -3,6 +3,7 @@ export function TextInput({ name, placeholder, value, onChange }) {
     <input
       type="text"
       name={name}
+      id={name}
       placeholder={placeholder}
       value={value}
       onChange={onChange}
