@@ -8,6 +8,7 @@ const convertAnswerToObj = (sAnswer) => {
   const parser = new XMLParser({
     cdataPropName: "__cdata",
     preserveOrder: true,
+    attributeNamePrefix: "@_",
     ignoreAttributes: false,
   });
   const obj = parser.parse(answerTemplate);
@@ -26,6 +27,7 @@ const createXMLQuestion = ({ questionName, questionText, answers }) => {
   const parser = new XMLParser({
     cdataPropName: "__cdata",
     preserveOrder: true,
+    attributeNamePrefix: "@_",
     ignoreAttributes: false,
   });
   const obj = parser.parse(questionTemplate);
@@ -37,7 +39,10 @@ const createXMLQuestion = ({ questionName, questionText, answers }) => {
   obj[0].question[0].name[0].text[0]["#text"] = questionName;
   obj[0].question[1].questiontext[0].text[0].__cdata[0]["#text"] = questionText;
 
-  const toBeReturned = { question: obj[0].question };
+  const toBeReturned = {
+    ":@": { "@_type": "multichoice" },
+    question: obj[0].question,
+  };
 
   //console.log(toBeReturned);
   //console.log(toBeReturned);
@@ -48,6 +53,7 @@ const createXMLQuestion = ({ questionName, questionText, answers }) => {
 export const createXMLQuiz = (questions) => {
   const parser = new XMLParser({
     cdataPropName: "__cdata",
+    attributeNamePrefix: "@_",
     preserveOrder: true,
     ignoreAttributes: false,
   });
@@ -62,6 +68,7 @@ export const createXMLQuiz = (questions) => {
     preserveOrder: true,
     ignoreAttributes: false,
     format: true,
+    attributeNamePrefix: "@_",
   });
 
   const xml = builder.build(!obj[1].quiz[0] ? "" : obj);
