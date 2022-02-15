@@ -5,33 +5,28 @@ import questionTemplate from "../templates/question";
 import quizTemplate from "../templates/quiz";
 
 const convertAnswerToObj = (sAnswer) => {
-  if (sAnswer === "") return;
-
   const parser = new XMLParser({
     cdataPropName: "__cdata",
     preserveOrder: true,
+    ignoreAttributes: false,
   });
   const obj = parser.parse(answerTemplate);
-  const [one] = obj;
-  const { answer } = one;
 
-  //obj.answer.text.__cdata = answer;
-  //obj[0].answer[0].text[0].__cdata[0]["#text"] = sAnswer;
-  answer[0].text[0].__cdata[0]["#text"] = sAnswer;
+  obj[0][":@"]["@_fraction"] = sAnswer.fraction;
+  obj[0].answer[0].text[0].__cdata[0]["#text"] = sAnswer.answerText;
 
-  const toBeReturned = { answer: answer };
-
-  return toBeReturned;
+  return obj[0];
 };
 
 const createXMLQuestion = ({ questionName, questionText, answers }) => {
-  if (answers.length === 0 || questionName === "" || questionText === "")
+  if (answers.indexOf("") !== -1 || questionName === "" || questionText === "")
     return;
   const objAnswers = answers.map((a) => convertAnswerToObj(a));
 
   const parser = new XMLParser({
     cdataPropName: "__cdata",
     preserveOrder: true,
+    ignoreAttributes: false,
   });
   const obj = parser.parse(questionTemplate);
 
@@ -69,7 +64,7 @@ export const createXMLQuiz = (questions) => {
     format: true,
   });
 
-  const xml = builder.build(obj);
+  const xml = builder.build(!obj[1].quiz[0] ? "" : obj);
 
   //console.log(obj);
   //console.log(xml);

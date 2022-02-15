@@ -11,7 +11,11 @@ const App = () => {
   const [xml, setXml] = useState("");
 
   const [questions, setQuestions] = useState([
-    { questionName: "", questionText: "", answers: [""] },
+    {
+      questionName: "",
+      questionText: "",
+      answers: [{ answerText: "", fraction: 100 }],
+    },
   ]);
 
   const removeQuestion = (i) => {
@@ -21,13 +25,17 @@ const App = () => {
   };
   const addQuestion = () => {
     const _questions = [...questions];
-    _questions.push({ questionName: "", questionText: "", answers: [""] });
+    _questions.push({
+      questionName: "",
+      questionText: "",
+      answers: [{ answerText: "", fraction: 0 }],
+    });
     setQuestions(_questions);
   };
 
   return (
     <div className="max-w-6xl m-auto">
-      <main className="py-16">
+      <main className="px-8 py-16">
         <h1 className="text-2xl">Moodle XML Converter</h1>
 
         <div className="pb-4">

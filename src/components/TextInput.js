@@ -1,4 +1,4 @@
-export function TextInput({ name, placeholder, value, onChange, className }) {
+export function TextInput({ name, placeholder, value, onChange }) {
   return (
     <input
       type="text"

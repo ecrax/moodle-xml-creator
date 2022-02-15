@@ -1,12 +1,21 @@
 import RichText from "../components/RichText";
 import { OutlineButton } from "./Button";
+import { NumberInput } from "./NumberInput";
 import { TextInput } from "./TextInput";
 
 function Question({ questions, setQuestions, index }) {
-  const onChange = (e, i) => {
+  const onAnswerTextChange = (e, i) => {
     const data = e.target.value;
     const _questions = [...questions];
-    _questions[index].answers[i] = data;
+    _questions[index].answers[i].answerText = data;
+    setQuestions(_questions);
+    //console.log(answers);
+  };
+  const onAnswerFractionChange = (e, i) => {
+    const data = e.target.value;
+    const _questions = [...questions];
+    console.log(_questions);
+    _questions[index].answers[i].fraction = data;
     setQuestions(_questions);
     //console.log(answers);
   };
@@ -19,7 +28,7 @@ function Question({ questions, setQuestions, index }) {
   };
   const addAnswer = () => {
     const _questions = [...questions];
-    _questions[index].answers.push("");
+    _questions[index].answers.push({ answerText: "", fraction: 0 });
     setQuestions(_questions);
   };
 
@@ -54,9 +63,16 @@ function Question({ questions, setQuestions, index }) {
             <div key={i}>
               <div className="flex pb-2">
                 <TextInput
-                  onChange={(event) => onChange(event, i)}
-                  value={questions[index].answers[i]}
+                  onChange={(event) => onAnswerTextChange(event, i)}
+                  value={questions[index].answers[i].answerText}
                   placeholder={"Answer"}
+                />
+                <NumberInput
+                  placeholder="Fraction"
+                  min={0}
+                  max={100}
+                  onChange={(event) => onAnswerFractionChange(event, i)}
+                  value={questions[index].answers[i].fraction}
                 />
                 {questions[index].answers.length !== 1 && (
                   <OutlineButton
