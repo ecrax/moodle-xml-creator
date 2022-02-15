@@ -44,7 +44,7 @@ function Question({ questions, setQuestions, index }) {
           setQuestions(_questions);
         }}
       />
-      <br />
+      <div className="py-2" />
       <RichText
         onChange={(_e, editor) => {
           const data = editor.getData();
@@ -55,6 +55,17 @@ function Question({ questions, setQuestions, index }) {
           //console.log(questionText);
         }}
         placeholder={"Question Text"}
+      />
+      <div className="py-2" />
+      <TextInput
+        name="general-feedback"
+        placeholder="General Feedback"
+        value={questions[index].generalFeedback}
+        onChange={(e) => {
+          const _questions = [...questions];
+          _questions[index].generalFeedback = e.target.value;
+          setQuestions(_questions);
+        }}
       />
       <div className="py-4 ml-8">
         <div className="pb-2 text-lg">Answers:</div>

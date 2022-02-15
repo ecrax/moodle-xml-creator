@@ -14,6 +14,7 @@ const App = () => {
     {
       questionName: "",
       questionText: "",
+      generalFeedback: "",
       answers: [{ answerText: "", fraction: 100 }],
     },
   ]);
@@ -28,6 +29,7 @@ const App = () => {
     _questions.push({
       questionName: "",
       questionText: "",
+      generalFeedback: "",
       answers: [{ answerText: "", fraction: 0 }],
     });
     setQuestions(_questions);

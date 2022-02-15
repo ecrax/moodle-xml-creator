@@ -19,8 +19,18 @@ const convertAnswerToObj = (sAnswer) => {
   return obj[0];
 };
 
-const createXMLQuestion = ({ questionName, questionText, answers }) => {
-  if (answers.indexOf("") !== -1 || questionName === "" || questionText === "")
+const createXMLQuestion = ({
+  questionName,
+  questionText,
+  generalFeedback,
+  answers,
+}) => {
+  if (
+    answers.indexOf("") !== -1 ||
+    questionName === "" ||
+    questionText === "" ||
+    generalFeedback === ""
+  )
     return;
   const objAnswers = answers.map((a) => convertAnswerToObj(a));
 
@@ -38,13 +48,15 @@ const createXMLQuestion = ({ questionName, questionText, answers }) => {
   obj[0].question.push(...objAnswers);
   obj[0].question[0].name[0].text[0]["#text"] = questionName;
   obj[0].question[1].questiontext[0].text[0].__cdata[0]["#text"] = questionText;
+  obj[0].question[2].generalfeedback[0].text[0].__cdata[0]["#text"] =
+    generalFeedback;
 
   const toBeReturned = {
     ":@": { "@_type": "multichoice" },
     question: obj[0].question,
   };
 
-  //console.log(toBeReturned);
+  console.log(toBeReturned);
   //console.log(toBeReturned);
 
   return toBeReturned;
